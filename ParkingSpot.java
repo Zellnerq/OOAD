@@ -10,6 +10,7 @@ public class ParkingSpot {
     private Vehicle carInSpot = null;
     private boolean isMopedSpot;
     private boolean isAvailable; 
+    private boolean checkedIn; //Needs to be implemented
     
     /**
      * This constructor takes in two parameters which are used to set the 
@@ -31,10 +32,24 @@ public class ParkingSpot {
         return isAvailable;
     }
     /**
+     * This getter method returns if the spot is a moped spot.
+     * @return True is a moped spot else false.
+     */
+    public boolean isMoped(){
+        return isMopedSpot;
+    }
+    /**
+     * This getter method returns the Vehicle in spot if there is one. 
+     * @return Vehicle in spot or null if spot is empty.
+     */
+    public Vehicle car(){
+        return carInSpot;
+    }
+    /**
      * This methods is for when a spot is attempted to be reserved. If 
      * successful the availability is set to false and true is returned.
      * If the spot is not open or the vehicle is the wrong type it returns 
-     * false.
+     * false. Sets carInSpot to the Vehicle passed in.
      * @param car the car that wishes to reserve the spot.
      * @return whether the reservation was successful. 
      */
@@ -49,18 +64,31 @@ public class ParkingSpot {
         return false;            
     }
     /**
+     * This method checks a car into a spot if it's reserved. If the spot is 
+     * not reserved or if the spot is occupied returns false.
+     * @return True if checkIn success, false if checkIn fails.
+     */
+    public boolean checkIn(){
+        if( !isAvailable && !checkedIn )
+        {
+            return checkedIn = true;
+        }
+        return false;       
+    }
+    /**
      * This methods allows a user to attempt to check out of a spot. It returns
      * true if the checkout is successful and false if the user was never 
-     * checked in the first place.
+     * checked in the first place. If successful sets car in spot to null;
      * @return whether or not the checkout was successful.
      */
     public boolean checkOut(){
-        if( isAvailable )
+        if( isAvailable ){            
             return false;
+        }
+        carInSpot = null;    
         return isAvailable = true;       
     }    
-    public static void main( String args[] )
-    {
+    public static void main( String args[] ){
         ParkingSpot testSpot = new ParkingSpot(0,false);
         ParkingSpot testMopedSpot = new ParkingSpot(1,true);
         Vehicle testCar = new Vehicle();

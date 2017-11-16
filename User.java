@@ -6,15 +6,20 @@
 public class User {
     private int ID;
     private String name;
-    //private Vehicle CarsOwned[];
+    private String password;
+    private String userName;
     
     public User(){
         ID = 0;
         name = "Jane Doe";
+        password = "password";
+        userName ="DoeJ";
     }
-    public User(int num, String userName){
-      ID = num;
-      name = userName;
+    public User(int num, String newName, String pass, String newUser){
+        ID = num;
+        name = newName;
+        userName = newUser;
+        password = pass;
     }
     public String getName(){
         return name;

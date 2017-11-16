@@ -44,6 +44,13 @@ public class Vehicle {
         return isMoped;
     }
     /**
+     * Returns if the plate matches the string. Not case sensitive
+     * @return plate number of the car
+     */
+    public boolean checkPlate(String plateToCompare){
+       return plateNum.equalsIgnoreCase(plateToCompare);
+    }
+    /**
      * This method overrides the toString() method to instead print the 
      * make, model, color, and plate number of the vehicle.
      * @return String of all info about vehicle.
