@@ -70,7 +70,7 @@ public class Vehicle {
         System.out.println(testCar.toString().matches("Ford, Model T,"
                                                         + " Black, AAA000"));
         Vehicle testMoped = new Vehicle("AAA001", "Honda", "1989 Spree", "red",
-                                        true);
+                                                                        true);
         System.out.println(testMoped.toString().matches("Honda, 1989 Spree, red"
                                                                  + ", AAA001"));
         System.out.println(testMoped.isMoped);
