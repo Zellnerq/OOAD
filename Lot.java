@@ -55,11 +55,11 @@ public class Lot {
             spotFound = spot[spotNum++].reserveSpot(car);                  
         if (!spotFound)
             return -1;
-        if( spot[spotNum].isMoped() )
+        if( spot[--spotNum].isMoped() )
             avalibleMopedSpots--;
         else
             avalibleSpots--;
-        return spotNum-1;
+        return spotNum;
     }
     /**
      * Allows user to check into spot. Calls that spots check in method and
@@ -78,10 +78,14 @@ public class Lot {
      * @return Whether check out is successful.
      */
     public boolean checkOut(int pSpotNum ){
+        boolean moped = spot[pSpotNum].isMoped();
         boolean temp = spot[pSpotNum].checkOut();
         if (temp)
         {
-            avalibleSpots++;
+            if(moped)
+                avalibleMopedSpots++;
+            else
+                avalibleSpots++;
             return true;
         }
         return false;
@@ -99,6 +103,8 @@ public class Lot {
      */
     public void print(){
         System.out.println("Spot availabilitiy of lot: " + lotNum);
+        System.out.println("Spots: " + avalibleSpots + 
+                '\n' + "Moped spots: " + avalibleMopedSpots);
         for(int i=0; i < spot.length; i++)
         {
             System.out.print("Spot: "+ (i+1) + " is "); 

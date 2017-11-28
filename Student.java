@@ -33,7 +33,7 @@ public class Student extends User{
         temp[cars.length] = new Vehicle( num, make, model, color, isMoped );
         return true;
     }    
-    public boolean deleteCar( String plateToDelete ){
+    public boolean deleteCar( String plateToDelete){
         boolean found = false;
         int index = 0;
         while(!found && index < cars.length){
