@@ -47,6 +47,9 @@ public class Vehicle {
      * Returns if the plate matches the string. Not case sensitive
      * @return plate number of the car
      */
+    public String getPlate(){
+        return plateNum;
+    }
     public boolean checkPlate(String plateToCompare){
        return plateNum.equalsIgnoreCase(plateToCompare);
     }

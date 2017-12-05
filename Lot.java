@@ -6,7 +6,7 @@
 public class Lot {
     private ParkingSpot spot[];
     private int avalibleSpots, lotNum, numMopedSpots, avalibleMopedSpots;
-    
+    static int index = 0;
     /**
      * Default constructor. For testing only. 
      */
@@ -24,11 +24,10 @@ public class Lot {
      * of moped spots and the designated lot number. It then initializes the
      * parking spots based on their type.
      * @param spots Number of normal parking spots
-     * @param num The designated lot number
      * @param numMoped Number of Moped spots
      */
-    public Lot( int num, int spots, int numMoped){
-        lotNum = num;
+    public Lot( int spots, int numMoped){
+        lotNum = index++;
         avalibleSpots = spots;
         avalibleMopedSpots = numMoped;
         spot = new ParkingSpot[spots + numMoped];
@@ -118,7 +117,8 @@ public class Lot {
      * @param args 
      */
     public static void main(String args[]){        
-        Lot testLot = new Lot(1,5,2);
+        Lot testLot = new Lot(5,2);        
+        testLot = new Lot(5,2);
         Vehicle testMoped = new Vehicle("AAA001", "Honda", "1989 Spree", "red",
                                         true);
         Vehicle testCar = new Vehicle();

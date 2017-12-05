@@ -9,8 +9,8 @@ public class ParkingSpot {
     private int spotNum;
     private Vehicle carInSpot = null;
     private boolean isMopedSpot;
-    private boolean isAvailable; 
-    private boolean checkedIn; //Needs to be implemented
+    private boolean isAvailable = false; 
+    private boolean checkedIn; 
     
     /**
      * This constructor takes in two parameters which are used to set the 
