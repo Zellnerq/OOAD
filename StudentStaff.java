@@ -37,9 +37,11 @@ public class StudentStaff extends User{
         }
         if (found){
             Vehicle temp[] = new Vehicle[cars.length -1];
-            System.arraycopy(temp, 0, cars, 0, --index);
-            System.arraycopy(temp, index, cars, index + 1, cars.length -index);
-            System.arraycopy(cars, 0, temp, 0, temp.length);
+            System.arraycopy( cars , 0 , temp , 0, index - 1);
+            if( index < cars.length)
+                System.arraycopy(cars, index, temp, index + 1, cars.length -index);
+            cars = new Vehicle[index - 1];
+            System.arraycopy(temp, 0, cars, 0, temp.length);
         }        
         return found;     
     }
@@ -55,8 +57,9 @@ public class StudentStaff extends User{
     }
     public static void main( String args[] ){
         StudentStaff staff = new StudentStaff();
+        staff.print();
         Vehicle temp = new Vehicle();
-        System.out.println(staff.addCar(temp));
+        //System.out.println(staff.addCar(temp));
         temp = new Vehicle("AAA001", "Honda", "1989 Spree", "Red", true);
         System.out.println(staff.addCar(temp));
         staff.print();
