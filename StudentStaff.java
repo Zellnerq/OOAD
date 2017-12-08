@@ -3,7 +3,8 @@
  * @author Quinn
  */
 public class StudentStaff extends User{
-    Vehicle cars[] = new Vehicle[0];    
+    private double balance = 0.00;
+    private Vehicle cars[] = new Vehicle[0];    
     /**
      * This method adds a Vehicle to a growable array for the Student.
      * If the plate number already exists it returns false, else it will return
@@ -45,10 +46,16 @@ public class StudentStaff extends User{
         }        
         return found;     
     }
-    @Override
+    public void updateBalance( int newBalance ){
+        balance = newBalance;
+    }
+    public double getBalance (){
+        return balance;
+    }            
     /**
      * Prints the User's ID, name, password, username, and cars.
      */
+    @Override
     public void print(){
         super.print();
         for(Vehicle car : cars){

@@ -96,12 +96,13 @@ public class LogInPage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(txtName.getText().equalsIgnoreCase("admin")){
-            //launch report page        
+            AdminPage admin = new AdminPage();
+            admin.setVisible(true);
         }
         else{
-            //Launch student/staff page
-        }        
-            //Hide this page 
+            StudentStaffPage reservationPage = new StudentStaffPage();
+            reservationPage.setVisible(true);
+        }                           
             setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -97,6 +97,9 @@ public class Lot {
     public boolean checkIfSpotAvailble( int pSpotNum ){
         return spot[pSpotNum].checkAvailable();
     }
+    public void override( int pSpotNum ){
+        spot[pSpotNum].checkOut();
+    }
     /**
      * Prints a list of a spots and their availability.
      */
@@ -113,7 +116,7 @@ public class Lot {
         }
     }
     /**
-     * Testbed, work in progress.
+     * Testbed
      * @param args 
      */
     public static void main(String args[]){        
