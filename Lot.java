@@ -13,7 +13,7 @@ public class Lot {
     public Lot(){
         avalibleSpots = 10;
         spot = new ParkingSpot[10];
-        lotNum = 0;
+        lotNum = ++index;
         for(int i=0; i<10; i++)
         {
             spot[i] = new ParkingSpot(i, false);
