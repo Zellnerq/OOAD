@@ -1,16 +1,15 @@
 
-/**
- *
- * @author mulrooneyju
- */
-
 public class Admin extends User{
+    
     final int MAX_REPORTS = 100;
+    
     private Report reports [] = new Report[MAX_REPORTS];
     private int numReports = 0;
     private Vehicle cars [];
-    
-    
+    /*
+     * 
+     * @param i 
+     */
     public void viewReport(int i)
     {
         System.out.println(reports[i].toString());
@@ -23,9 +22,13 @@ public class Admin extends User{
          int time = 800;
         // Report(Vehicle v, ParkingSpot s, Lot l, int t)
           reports[numReports++] = new Report(tempV,tempS, tempL,time);
-          System.out.println("Report Added\n");
     }
     
+    public void removeReport(int r)
+    {
+            
+    }
+ 
     public int getNum()
     {
         return numReports;

@@ -19,6 +19,14 @@ public class Report {
     private Lot lot;
     private int time;
     
+    Report()
+    {
+        curVehicle = null;
+        spot = null;
+        lot = null;
+        time = 0;
+    }
+    
     Report(Vehicle v, ParkingSpot s, Lot l, int t)
     {
         curVehicle = v;
