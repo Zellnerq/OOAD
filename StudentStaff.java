@@ -53,7 +53,7 @@ public class StudentStaff extends User{
         return found;     
     }
     public void updateBalance( int newBalance ){
-        balance = newBalance;
+        balance += newBalance;
     }
     public double getBalance (){
         return balance;
@@ -68,6 +68,17 @@ public class StudentStaff extends User{
             System.out.println(car.toString());
         }
     }
+    
+    public boolean findCar(Vehicle ve)
+    {
+       for(int i = 0; i < cars.length; i++)
+       {
+          if (cars[i].getPlate().equals(ve.getPlate()))
+             return true;
+       }
+       return false;
+    }
+    
     public static void main( String args[] ){
         
         StudentStaff staff = new StudentStaff();

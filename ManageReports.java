@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import java.util.Date;
+
 /**
  *
  * @author neefez
@@ -13,9 +15,29 @@ public class ManageReports
     public static final int MAX_REPORTS = 1000;
     public static int numReports = 0;
     public static Report[] reportList = new Report[MAX_REPORTS];
-    public static void addReport(Vehicle v)
+    
+    public static void addReport(Vehicle v, int lot, int space)
     {
-       Report newrep = new Report(v);
+       Lot accessLot = Main.lots[lot];
+       Date d = new Date();
+       int t = d.getDate();
+       Report newrep = new Report(v, accessLot.getSpot(space), Main.lots[lot], t);
        reportList[numReports++] = newrep;
     } 
+    
+    public static void viewReports()
+    {
+       ReportList newList = new ReportList();
+       newList.setVisible(true);
+    }
+    
+    public static void approveReport(int reportNum, int amount)
+    {
+       Vehicle v = reportList[reportNum].getVehicle();
+       StudentStaff s = Main.findUser(v);
+       if(s.getID() != 0)
+       {
+          s.updateBalance(-amount);
+       }
+    }
 }

@@ -13,7 +13,7 @@ public class Lot {
     public Lot(){
         avalibleSpots = 10;
         spot = new ParkingSpot[10];
-        lotNum = ++index;
+        lotNum = 0;
         for(int i=0; i<10; i++)
         {
             spot[i] = new ParkingSpot(i, false);
@@ -97,9 +97,6 @@ public class Lot {
     public boolean checkIfSpotAvailble( int pSpotNum ){
         return spot[pSpotNum].checkAvailable();
     }
-    public void override( int pSpotNum ){
-        spot[pSpotNum].checkOut();
-    }
     /**
      * Prints a list of a spots and their availability.
      */
@@ -115,8 +112,14 @@ public class Lot {
             System.out.println("available.");
         }
     }
+    
+    public ParkingSpot getSpot(int i)
+    {
+       return spot[i];
+    }
+    
     /**
-     * Testbed
+     * Testbed, work in progress.
      * @param args 
      */
     public static void main(String args[]){        

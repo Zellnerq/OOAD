@@ -28,4 +28,18 @@ public class Main {
         // TODO code application logic here
     }
     
+    public static StudentStaff findUser(Vehicle ve)
+    {
+       boolean hasCar = false;
+       StudentStaff s = new StudentStaff();
+       for(int i = 0; i < users.length; i++)
+       {
+          if(users[i] instanceof StudentStaff && !hasCar)
+          {  
+             s = (StudentStaff)users[i];
+             hasCar = s.findCar(ve);
+          }
+       }
+       return s;
+    }        
 }

@@ -40,4 +40,28 @@ public class Report {
        return("Vehicle: " + curVehicle.toString() + " Time: " + time);
     }
    
+    public Lot getLot()
+    {
+       return lot;
+    }       
+    
+    public ParkingSpot getSpace()
+    {
+       return spot;
+    }      
+    
+    public String getLicense()
+    {
+       return curVehicle.getPlate();
+    }      
+    
+    public int getTime()
+    {
+       return time;
+    }      
+    
+    public Vehicle getVehicle()
+    {
+       return curVehicle;
+    }
 }
