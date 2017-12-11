@@ -4,6 +4,7 @@
  * @author Quinn
  */
 public class User {
+    private static int index = 0;
     private int ID;
     private String name;
     private String password;
@@ -13,7 +14,7 @@ public class User {
      * Default constructor. Used for testing only.
      */
     public User(){
-        ID = 0;
+        ID = index++;
         name = "Jane Doe";
         password = "password";
         userName ="DoeJ";

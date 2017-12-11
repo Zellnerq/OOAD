@@ -5,6 +5,12 @@
 public class StudentStaff extends User{
     private double balance = 0.00;
     private Vehicle cars[] = new Vehicle[0];    
+    
+    public StudentStaff(){
+        super();
+        Vehicle car = new Vehicle();
+        addCar(car);
+    }
     /**
      * This method adds a Vehicle to a growable array for the Student.
      * If the plate number already exists it returns false, else it will return
@@ -63,16 +69,18 @@ public class StudentStaff extends User{
         }
     }
     public static void main( String args[] ){
+        
         StudentStaff staff = new StudentStaff();
         staff.print();
-        Vehicle temp = new Vehicle();
+        /**
+         * Vehicle temp = new Vehicle();
         //System.out.println(staff.addCar(temp));
         temp = new Vehicle("AAA001", "Honda", "1989 Spree", "Red", true);
         System.out.println(staff.addCar(temp));
         staff.print();
         System.out.println(staff.deleteCar(temp));
         staff.print();
-        
+        */
     }
 }
 

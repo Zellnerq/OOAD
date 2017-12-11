@@ -9,12 +9,12 @@ public class Vehicle {
     private String model;
     private String color;
     private boolean isMoped;
-    
+    private static int index = 0;
     /**
      * Default constructor. Intended only for testing.
      */
     public Vehicle(){
-        plateNum = "AAA000";
+        plateNum = "AAA00" + index++;
         make = "Ford";
         model = "Model T";
         color = "Black";    
@@ -77,7 +77,10 @@ public class Vehicle {
         System.out.println(testMoped.toString().matches("Honda, 1989 Spree, red"
                                                                  + ", AAA001"));
         System.out.println(testMoped.isMoped);
-                
+        testCar = new Vehicle();        
+        
+        System.out.println(testCar.toString().matches("Ford, Model T,"
+                                                        + " Black, AAA001"));
     }
             
 }
