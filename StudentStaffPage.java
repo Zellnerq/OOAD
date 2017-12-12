@@ -15,7 +15,14 @@ public class StudentStaffPage extends javax.swing.JFrame {
      */
     public StudentStaffPage() {
         initComponents();
+        if ( Main.users[0] instanceof StudentStaff ){
+            user = (StudentStaff)Main.users[0];
+            car = user.getVehicle();
+        }
+            
     }
+    private StudentStaff user;
+    private Vehicle car;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,7 +33,6 @@ public class StudentStaffPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cbVehicles = new javax.swing.JComboBox<>();
         cbLotNum = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
@@ -35,18 +41,12 @@ public class StudentStaffPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student/Staff ");
 
-        cbVehicles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "645-FED", "111-AAA", "666-DEV", " " }));
-        cbVehicles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbVehiclesActionPerformed(evt);
-            }
-        });
-
-        cbLotNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "5", "8", "13" }));
+        cbLotNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", " " }));
 
         txtArea.setColumns(20);
         txtArea.setRows(5);
@@ -68,6 +68,8 @@ public class StudentStaffPage extends javax.swing.JFrame {
 
         jButton2.setText("Check In");
 
+        jLabel3.setText("jLabel3");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,9 +90,9 @@ public class StudentStaffPage extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(cbLotNum, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbVehicles, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbLotNum, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
                                 .addGap(32, 32, 32)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -104,9 +106,9 @@ public class StudentStaffPage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbVehicles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblVehicle))
-                        .addGap(40, 40, 40)
+                            .addComponent(lblVehicle)
+                            .addComponent(jLabel3))
+                        .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(cbLotNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)))
@@ -121,12 +123,11 @@ public class StudentStaffPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbVehiclesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbVehiclesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbVehiclesActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        txtArea.setText("Reservation Created!");
+        if( user.getReservation() == null){
+            int temp = ManageParking.reserveSpot(car);
+            //Reservation tempRes = new reservation(
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -166,11 +167,11 @@ public class StudentStaffPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbLotNum;
-    private javax.swing.JComboBox<String> cbVehicles;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblVehicle;
     private javax.swing.JTextArea txtArea;

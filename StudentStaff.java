@@ -5,6 +5,7 @@
 public class StudentStaff extends User{
     private double balance = 0.00;
     private Vehicle cars[] = new Vehicle[0];    
+    private Reservation userRes = null;
     
     public StudentStaff(){
         super();
@@ -68,7 +69,9 @@ public class StudentStaff extends User{
             System.out.println(car.toString());
         }
     }
-    
+    public Vehicle getVehicle(){
+        return cars[0];
+    }
     public boolean findCar(Vehicle ve)
     {
        for(int i = 0; i < cars.length; i++)
@@ -78,7 +81,16 @@ public class StudentStaff extends User{
        }
        return false;
     }
-    
+    public boolean setReservation(Reservation r){
+        if (userRes == null){
+            userRes = r;
+            return true;
+        }
+        return false;
+    }
+    public Reservation getReservation(){
+        return userRes;
+    }    
     public static void main( String args[] ){
         
         StudentStaff staff = new StudentStaff();

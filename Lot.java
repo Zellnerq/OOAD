@@ -113,6 +113,15 @@ public class Lot {
         }
     }
     
+    public boolean checkAvailability(){
+        for( int i = 0; i < spot.length; i++ )
+        {
+            if( spot[i].checkAvailable() )
+                return true;
+        }
+        return false;
+    }
+    
     public ParkingSpot getSpot(int i)
     {
        return spot[i];
