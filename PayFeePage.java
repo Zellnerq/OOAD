@@ -17,7 +17,10 @@ public class PayFeePage extends javax.swing.JFrame {
     public PayFeePage(StudentStaff s) {
         user = s;
         initComponents();
-        amountOwed.setText("You owe $" + s.getBalance() + "0");
+        if(s.getBalance() < 0)
+           amountOwed.setText("You owe $" + (-s.getBalance()) + "0");
+        else
+           amountOwed.setText("Your balance: $" + s.getBalance() + "0");
     }
 
     /**
@@ -48,7 +51,7 @@ public class PayFeePage extends javax.swing.JFrame {
 
         jLabel2.setText("Amount to pay off:");
 
-        amountOwed.setText("jLabel3");
+        amountOwed.setText("You owe $0.00");
 
         btnEnter.setText("Enter");
         btnEnter.addActionListener(new java.awt.event.ActionListener() {
@@ -110,8 +113,14 @@ public class PayFeePage extends javax.swing.JFrame {
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
         
         double payingAmount = Double.parseDouble(paying.getText());
-        user.updateBalance(payingAmount);
-        amountOwed.setText("You owe: $" + user.getBalance());
+        if(payingAmount > 0)
+        {
+           user.updateBalance(payingAmount);
+           if(user.getBalance() < 0)
+              amountOwed.setText("You owe $" + (-user.getBalance()) + "0");
+           else
+              amountOwed.setText("Your balance: $" + user.getBalance() + "0");
+        }
     }//GEN-LAST:event_btnEnterActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

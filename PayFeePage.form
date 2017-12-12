@@ -90,7 +90,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="amountOwed">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel3"/>
+        <Property name="text" type="java.lang.String" value="You owe $0.00"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnEnter">
