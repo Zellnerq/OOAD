@@ -18,12 +18,14 @@ public class StudentStaffPage extends javax.swing.JFrame {
         if ( Main.users[0] instanceof StudentStaff ){
             user = (StudentStaff)Main.users[0];
             car = user.getVehicle();
-        }
-            
+            lblUserCar.setText(car.getPlate());
+            index = 0;
+            update();
+        }            
     }
     private StudentStaff user;
     private Vehicle car;
-
+    private int index;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,12 +38,18 @@ public class StudentStaffPage extends javax.swing.JFrame {
         cbLotNum = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
-        lblVehicle = new javax.swing.JLabel();
+        lblUserCar = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnReservation = new javax.swing.JButton();
+        btnCheck = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        lblVehicle = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
+        btnCheckOut = new javax.swing.JButton();
+        btnReport = new javax.swing.JButton();
+        btnFees = new javax.swing.JButton();
+        btnQuit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student/Staff ");
@@ -52,84 +60,242 @@ public class StudentStaffPage extends javax.swing.JFrame {
         txtArea.setRows(5);
         jScrollPane1.setViewportView(txtArea);
 
-        lblVehicle.setText("Vehicle:");
+        lblUserCar.setText("UserCar");
 
         jLabel2.setText("Lot Number:");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Reservation");
 
-        jButton1.setText("Create Reservation");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnReservation.setText("Create Reservation");
+        btnReservation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnReservationActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Check In");
+        btnCheck.setText("Check In");
+        btnCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText(" ");
+
+        lblVehicle.setText("Vehicle:");
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        btnCheckOut.setText("Check Out");
+        btnCheckOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCheckOutActionPerformed(evt);
+            }
+        });
+
+        btnReport.setText("Report");
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
+
+        btnFees.setText("Pay fees");
+        btnFees.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFeesActionPerformed(evt);
+            }
+        });
+
+        btnQuit.setText("Back");
+        btnQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel2)
-                    .addComponent(lblVehicle))
-                .addGap(6, 6, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
-                        .addGap(101, 101, 101))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(lblVehicle))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbLotNum, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(61, 61, 61)
+                                        .addComponent(jLabel3))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(4, 4, 4)
+                                        .addComponent(lblUserCar)))
                                 .addGap(32, 32, 32)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(btnReservation)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCheck)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnQuit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnCheckOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(12, 12, 12))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnFees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(188, 188, 188))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(47, 47, 47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblVehicle)
-                            .addComponent(jLabel3))
+                            .addComponent(lblUserCar))
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(cbLotNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnReservation)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnCheck)
+                    .addComponent(btnCheckOut))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnReport)
+                    .addComponent(btnFees)
+                    .addComponent(btnQuit))
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if( user.getReservation() == null){
-            int temp = ManageParking.reserveSpot(car);
-            //Reservation tempRes = new reservation(
+    private void btnReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservationActionPerformed
+        update();
+        if( user.getReservation() == null ){
+            int temp = ManageParking.reserveSpot(car, index);
+            if (temp > -1){
+                Reservation tempRes = new Reservation(temp, index, user);
+                user.setReservation(tempRes);
+                txtArea.setText("Reservation Created," + '\n' + "Your"
+                        + " Spot is: " + (tempRes.getSpot() + 1) ); 
+            }
+            else 
+                txtArea.setText("That lot has no avalible spots");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        else
+            txtArea.setText("You already have a reservation,");
+        updateUser();
+    }//GEN-LAST:event_btnReservationActionPerformed
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        update();
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
+        Reservation temp = user.getReservation();
+        if( temp == null )
+            txtArea.setText("You do not have a Reservation.");
+        else{
+            if (ManageParking.checkIn(temp)){
+                txtArea.setText("Check in succesful at spot " + 
+                                                (temp.getSpot() + 1 ) + ".");
+                temp.setActive(true);
+                user.setReservation(temp);
+            }
+            else
+                txtArea.setText("You are already checked in!");
+        }
+        updateUser();
+    }//GEN-LAST:event_btnCheckActionPerformed
+
+    private void btnCheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckOutActionPerformed
+        Reservation temp = user.getReservation();
+        if ( temp == null)
+            txtArea.setText("You do not have a reservation.");
+        else{
+            if( !ManageParking.checkOut(temp) )
+                txtArea.setText("You haven't checked in");
+            else{
+                txtArea.setText("Check out succesfull," + '\n' + "Have a nice"
+                                                                    + " day");
+                temp.setActive(false);
+                user.setReservation(temp);
+                user.setReservation(null);
+            }
+        }
+    }//GEN-LAST:event_btnCheckOutActionPerformed
+
+    private void btnQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitActionPerformed
+        updateUser();
+        setVisible(false);
+    }//GEN-LAST:event_btnQuitActionPerformed
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        updateUser();
+        ReportPage report = new ReportPage();
+        report.setVisible(true);
+        setVisible(false);        
+    }//GEN-LAST:event_btnReportActionPerformed
+
+    private void btnFeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeesActionPerformed
+        updateUser();
+        PayFeePage fees = new PayFeePage(user);
+        fees.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnFeesActionPerformed
+    
+    private void update(){
+        int temp = cbLotNum.getSelectedIndex();
+        if (temp > -1){
+            index = temp;
+            txtArea.setText(ManageParking.updateAvailability(index));
+        }
+    }
+    /**
+     * Updates Globals 
+     */
+    private void updateUser(){
+        if ( user.getReservation() != null )
+            Main.resList[user.getReservation().getID()]=user.getReservation();
+        Main.users[0] = user;
+    }
     /**
      * @param args the command line arguments
      */
@@ -166,13 +332,19 @@ public class StudentStaffPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCheck;
+    private javax.swing.JButton btnCheckOut;
+    private javax.swing.JButton btnFees;
+    private javax.swing.JButton btnQuit;
+    private javax.swing.JButton btnReport;
+    private javax.swing.JButton btnReservation;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cbLotNum;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblUserCar;
     private javax.swing.JLabel lblVehicle;
     private javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables

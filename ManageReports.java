@@ -35,9 +35,10 @@ public class ManageReports
     {
        Vehicle v = reportList[reportNum].getVehicle();
        StudentStaff s = Main.findUser(v);
-       if(s.getID() != 0)
+       if(s.getID() > -1)
        {
           s.updateBalance(-amount);
+          Main.users[0] = s;
        }
        deleteReport(reportNum);
     }

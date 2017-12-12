@@ -17,6 +17,7 @@ public class AdminPage extends javax.swing.JFrame {
         initComponents();
         noReport.setVisible(false);
         successMessage.setVisible(false);
+        updateText();
     }
 
     /**
@@ -37,6 +38,9 @@ public class AdminPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         successMessage = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtArea = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,9 +58,17 @@ public class AdminPage extends javax.swing.JFrame {
             }
         });
 
+        lotnum.setText("1");
         lotnum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lotnumActionPerformed(evt);
+            }
+        });
+
+        spot.setText("1");
+        spot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spotActionPerformed(evt);
             }
         });
 
@@ -75,6 +87,17 @@ public class AdminPage extends javax.swing.JFrame {
 
         successMessage.setText("Successfully Updated!");
 
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane2.setViewportView(txtArea);
+
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,10 +109,9 @@ public class AdminPage extends javax.swing.JFrame {
                         .addComponent(ViewReportButton)
                         .addGap(37, 37, 37)
                         .addComponent(noReport))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(105, 105, 105)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                    .addComponent(jButton3)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -101,21 +123,16 @@ public class AdminPage extends javax.swing.JFrame {
                         .addComponent(lotnum, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(successMessage)
-                        .addComponent(jButton4)))
-                .addGap(28, 28, 28))
+                        .addComponent(jButton4)
+                        .addComponent(jButton1)))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ViewReportButton)
-                            .addComponent(noReport))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(19, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(lotnum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -124,10 +141,22 @@ public class AdminPage extends javax.swing.JFrame {
                             .addComponent(spot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(16, 16, 16)
-                        .addComponent(jButton4)))
-                .addGap(18, 18, 18)
-                .addComponent(successMessage)
-                .addContainerGap(117, Short.MAX_VALUE))
+                        .addComponent(jButton4)
+                        .addGap(27, 27, 27)
+                        .addComponent(successMessage)
+                        .addGap(59, 59, 59))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2)
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ViewReportButton)
+                            .addComponent(noReport))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)))
+                .addGap(32, 32, 32))
         );
 
         pack();
@@ -137,8 +166,9 @@ public class AdminPage extends javax.swing.JFrame {
         // TODO add your handling code here:
        int lotNumber = Integer.parseInt(lotnum.getText());
        int spotNumber = Integer.parseInt(spot.getText());
-     //  Main.lots[lotNumber].override(spotNumber);
+       ManageParking.override(lotNumber-1, spotNumber-1);
        successMessage.setVisible(true);
+       updateText();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void lotnumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lotnumActionPerformed
@@ -165,6 +195,21 @@ public class AdminPage extends javax.swing.JFrame {
    //     this.setVisible(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void spotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spotActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_spotActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private void updateText(){
+        String temp = "";
+        for( int i = 0; i < Main.lots.length; i++){
+            temp += ManageParking.updateAvailability(i) + '\n';
+        }
+        txtArea.setText(temp);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -202,13 +247,16 @@ public class AdminPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ViewReportButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField lotnum;
     private javax.swing.JLabel noReport;
     private javax.swing.JTextField spot;
     private javax.swing.JLabel successMessage;
+    private javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,7 +8,7 @@ public class Main {
     private static final int DEMO_SIZE = 5;
     public static Lot lots[] = new Lot[DEMO_SIZE];
     public static User users[] = new User[DEMO_SIZE];
-    //public static 
+    public static Reservation resList[] = new Reservation[DEMO_SIZE];
     
     /**
      * @param args the command line arguments

@@ -17,9 +17,10 @@ public class ReportList extends javax.swing.JFrame {
     public ReportList() {
         initComponents();
         String[] columns = new String[]{ "Lot", "Space", "License Plate", 
-                                         "Time"};
-        
-       // Object data[][] = new Object[4][ManageReports.numReports];
+                                         "Day"};
+        String[] resColumns = new String[]{ "Lot", "Space", "License Plate", 
+                                         "Day", "Active"};
+        // Object data[][] = new Object[4][ManageReports.numReports];
         Object data[][] = new Object[ManageReports.numReports][4];
         
         for(int i = 0; i < ManageReports.numReports; i++)
@@ -36,10 +37,27 @@ public class ReportList extends javax.swing.JFrame {
         }
         for(int i = 0; i < ManageReports.numReports; i++)
         {
-           data[i][3] = ManageReports.reportList[i].getTime();
+           data[i][3] = "Dec " + ManageReports.reportList[i].getTime() + "th";
         }
     //    jTable1 = new javax.swing.JTable(data, columns);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(data, columns));
+        
+        int resIndex = Reservation.index;
+        Object resData[][] = new Object[resIndex][5];
+        
+        for(int i = 0; i < resIndex; i++)
+        {
+            resData[i][0] = Main.resList[i].getLot()+1;
+            resData[i][1] = Main.resList[i].getSpot()+1;
+            resData[i][2] = Main.resList[i].getPlate();
+            resData[i][3] = "Dec " + Main.resList[i].getDate() + "th";
+            resData[i][4] = Main.resList[i].getActive();
+        }
+    //    jTable1 = new javax.swing.JTable(data, columns);
+        tblReservation.setModel(new javax.swing.table.DefaultTableModel(resData, resColumns));
+        
+        
+        
     }
 
     /**
@@ -57,6 +75,9 @@ public class ReportList extends javax.swing.JFrame {
         DeleteButton = new javax.swing.JButton();
         feeAmount = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblReservation = new javax.swing.JTable();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,15 +121,38 @@ public class ReportList extends javax.swing.JFrame {
 
         jLabel1.setText("Fee Amount:");
 
+        tblReservation.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+            }
+        ));
+        tblReservation.getTableHeader().setReorderingAllowed(false);
+        tblReservation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblReservationMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblReservation);
+
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jLabel1)
@@ -117,21 +161,35 @@ public class ReportList extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addComponent(ApproveButton)
                         .addGap(18, 18, 18)
-                        .addComponent(DeleteButton)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addComponent(DeleteButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack)
+                        .addGap(18, 18, 18))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ApproveButton)
                     .addComponent(DeleteButton)
                     .addComponent(feeAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(btnBack))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -174,6 +232,14 @@ public class ReportList extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
+    private void tblReservationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblReservationMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblReservationMouseClicked
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -212,9 +278,12 @@ public class ReportList extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ApproveButton;
     private javax.swing.JButton DeleteButton;
+    private javax.swing.JButton btnBack;
     private javax.swing.JTextField feeAmount;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblReservation;
     // End of variables declaration//GEN-END:variables
 }

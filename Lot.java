@@ -112,9 +112,11 @@ public class Lot {
             System.out.println("available.");
         }
     }
-    
-    public boolean checkAvailability()
-    {
+    @Override
+    public String toString(){
+        return "Lot: " + lotNum + '\n' + "Spots open: " + avalibleSpots;
+    }
+    public boolean checkAvailability(){
          for( int i = 0; i < spot.length; i++ )
          {
              if( spot[i].checkAvailable() )
@@ -122,15 +124,18 @@ public class Lot {
          }
          return false;
     }
-    
     public int getLotNumber()
     {
        return lotNum;
     }
-    
     public ParkingSpot getSpot(int i)
     {
        return spot[i];
+    }
+    public void override( int num ){
+        if( !spot[num].checkAvailable() )
+            avalibleSpots++;
+        spot[num] = new ParkingSpot(num, spot[num].isMoped());
     }
     
     /**

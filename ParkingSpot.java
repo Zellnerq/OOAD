@@ -82,10 +82,12 @@ public class ParkingSpot {
      * @return whether or not the checkout was successful.
      */
     public boolean checkOut(){
-        if( isAvailable ){            
+        if( isAvailable )           
             return false;
-        }
-        carInSpot = null;    
+        if ( !checkedIn )
+            return false;
+        carInSpot = null;
+        checkedIn = false;
         return isAvailable = true;       
     }    
     

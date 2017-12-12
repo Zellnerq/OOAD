@@ -72,8 +72,7 @@ public class StudentStaff extends User{
     public Vehicle getVehicle(){
         return cars[0];
     }
-    public boolean findCar(Vehicle ve)
-    {
+    public boolean findCar(Vehicle ve){
        for(int i = 0; i < cars.length; i++)
        {
           if (cars[i].getPlate().equals(ve.getPlate()))
@@ -81,12 +80,8 @@ public class StudentStaff extends User{
        }
        return false;
     }
-    public boolean setReservation(Reservation r){
-        if (userRes == null){
-            userRes = r;
-            return true;
-        }
-        return false;
+    public void setReservation(Reservation r){
+        userRes = r;
     }
     public Reservation getReservation(){
         return userRes;
