@@ -39,6 +39,7 @@ public class ManageReports
        {
           s.updateBalance(-amount);
        }
+       deleteReport(reportNum);
     }
     
     public static void deleteReport(int reportNum)

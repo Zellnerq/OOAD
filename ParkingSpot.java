@@ -88,6 +88,12 @@ public class ParkingSpot {
         carInSpot = null;    
         return isAvailable = true;       
     }    
+    
+    public int getSpotNumber()
+    {
+       return spotNum;
+    }
+    
     public static void main( String args[] ){
         ParkingSpot testSpot = new ParkingSpot(0,false);
         ParkingSpot testMopedSpot = new ParkingSpot(1,true);

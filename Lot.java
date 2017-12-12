@@ -13,7 +13,7 @@ public class Lot {
     public Lot(){
         avalibleSpots = 10;
         spot = new ParkingSpot[10];
-        lotNum = 0;
+        lotNum = ++index;
         for(int i=0; i<10; i++)
         {
             spot[i] = new ParkingSpot(i, false);
@@ -113,13 +113,19 @@ public class Lot {
         }
     }
     
-    public boolean checkAvailability(){
-        for( int i = 0; i < spot.length; i++ )
-        {
-            if( spot[i].checkAvailable() )
-                return true;
-        }
-        return false;
+    public boolean checkAvailability()
+    {
+         for( int i = 0; i < spot.length; i++ )
+         {
+             if( spot[i].checkAvailable() )
+                 return true;
+         }
+         return false;
+    }
+    
+    public int getLotNumber()
+    {
+       return lotNum;
     }
     
     public ParkingSpot getSpot(int i)

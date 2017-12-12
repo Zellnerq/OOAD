@@ -169,7 +169,7 @@ public class ReportPage extends javax.swing.JFrame {
                                       CarMake.getText(), CarModel.getText(), 
                                       CarColor.getText(), IsMoped.isSelected());
        
-       int lotNum = Integer.parseInt(lotNumber.getText());
+       int lotNum = Integer.parseInt(lotNumber.getText()) - 1;
        int spaceNum = Integer.parseInt(ParkingSpaceNumber.getText());
        ManageReports.addReport(offending, lotNum, spaceNum);    
        setVisible(false);

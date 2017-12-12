@@ -24,11 +24,11 @@ public class ReportList extends javax.swing.JFrame {
         
         for(int i = 0; i < ManageReports.numReports; i++)
         {
-           data[i][0] = ManageReports.reportList[i].getLot();
+           data[i][0] = ManageReports.reportList[i].getLot().getLotNumber();
         }
         for(int i = 0; i < ManageReports.numReports; i++)
         {
-           data[i][1] = ManageReports.reportList[i].getSpace();
+           data[i][1] = ManageReports.reportList[i].getSpace().getSpotNumber();
         }
         for(int i = 0; i < ManageReports.numReports; i++)
         {
@@ -151,12 +151,14 @@ public class ReportList extends javax.swing.JFrame {
         String amount = feeAmount.getText();
         double intAmount = 0;
         if(!amount.equals(""))
-           intAmount = Double.parseDouble(amount);
-        if(selectedRow >= 0 && intAmount != 0)
         {
-           ManageReports.approveReport(selectedRow, intAmount);
+           intAmount = Double.parseDouble(amount);
+           if(selectedRow >= 0 && intAmount != 0)
+           {
+              ManageReports.approveReport(selectedRow, intAmount);
+           }
+           setVisible(false);
         }
-        setVisible(false);
     }//GEN-LAST:event_ApproveButtonActionPerformed
 
     private void feeAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feeAmountActionPerformed
