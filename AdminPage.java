@@ -87,6 +87,7 @@ public class AdminPage extends javax.swing.JFrame {
 
         successMessage.setText("Successfully Updated!");
 
+        txtArea.setEditable(false);
         txtArea.setColumns(20);
         txtArea.setRows(5);
         jScrollPane2.setViewportView(txtArea);
@@ -177,14 +178,9 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void ViewReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewReportButtonActionPerformed
         // TODO add your handling code here:
-        if(ManageReports.numReports > 0)
-        {
-           noReport.setVisible(false);
-           ReportList rList = new ReportList();
-           rList.setVisible(true);
-        }
-        else
-           noReport.setVisible(true);
+        noReport.setVisible(false);
+        ReportList rList = new ReportList();
+        rList.setVisible(true);
     }//GEN-LAST:event_ViewReportButtonActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

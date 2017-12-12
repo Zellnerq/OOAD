@@ -54,8 +54,14 @@ public class StudentStaffPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Student/Staff ");
 
-        cbLotNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", " " }));
+        cbLotNum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        cbLotNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbLotNumActionPerformed(evt);
+            }
+        });
 
+        txtArea.setEditable(false);
         txtArea.setColumns(20);
         txtArea.setRows(5);
         jScrollPane1.setViewportView(txtArea);
@@ -220,7 +226,7 @@ public class StudentStaffPage extends javax.swing.JFrame {
                 txtArea.setText("That lot has no avalible spots");
         }
         else
-            txtArea.setText("You already have a reservation,");
+            txtArea.setText("You already have a reservation.");
         updateUser();
     }//GEN-LAST:event_btnReservationActionPerformed
 
@@ -253,7 +259,7 @@ public class StudentStaffPage extends javax.swing.JFrame {
             if( !ManageParking.checkOut(temp) )
                 txtArea.setText("You haven't checked in");
             else{
-                txtArea.setText("Check out succesfull," + '\n' + "Have a nice"
+                txtArea.setText("Check out succesful," + '\n' + "Have a nice"
                                                                     + " day");
                 temp.setActive(false);
                 user.setReservation(temp);
@@ -270,8 +276,7 @@ public class StudentStaffPage extends javax.swing.JFrame {
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         updateUser();
         ReportPage report = new ReportPage();
-        report.setVisible(true);
-        setVisible(false);        
+        report.setVisible(true);    
     }//GEN-LAST:event_btnReportActionPerformed
 
     private void btnFeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeesActionPerformed
@@ -280,6 +285,11 @@ public class StudentStaffPage extends javax.swing.JFrame {
         fees.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnFeesActionPerformed
+
+    private void cbLotNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbLotNumActionPerformed
+        // TODO add your handling code here:
+        update();
+    }//GEN-LAST:event_cbLotNumActionPerformed
     
     private void update(){
         int temp = cbLotNum.getSelectedIndex();

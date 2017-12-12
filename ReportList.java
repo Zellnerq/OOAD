@@ -18,9 +18,9 @@ public class ReportList extends javax.swing.JFrame {
         initComponents();
         String[] columns = new String[]{ "Lot", "Space", "License Plate", 
                                          "Day"};
-        String[] resColumns = new String[]{ "Lot", "Space", "License Plate", 
+        String[] resColumns = new String[]{ "Lot", "Space", "Plate #", 
                                          "Day", "Active"};
-        // Object data[][] = new Object[4][ManageReports.numReports];
+        
         Object data[][] = new Object[ManageReports.numReports][4];
         
         for(int i = 0; i < ManageReports.numReports; i++)
@@ -53,7 +53,7 @@ public class ReportList extends javax.swing.JFrame {
             resData[i][3] = "Dec " + Main.resList[i].getDate() + "th";
             resData[i][4] = Main.resList[i].getActive();
         }
-    //    jTable1 = new javax.swing.JTable(data, columns);
+        
         tblReservation.setModel(new javax.swing.table.DefaultTableModel(resData, resColumns));
         
         

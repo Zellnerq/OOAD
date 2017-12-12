@@ -113,7 +113,7 @@ public class PayFeePage extends javax.swing.JFrame {
     private void btnEnterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnterActionPerformed
         
         double payingAmount = Double.parseDouble(paying.getText());
-        if(payingAmount > 0)
+        if(payingAmount > 0 && (-user.getBalance()) >= payingAmount)
         {
            user.updateBalance(payingAmount);
            if(user.getBalance() < 0)

@@ -101,7 +101,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="LicenseNumber">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ABC123"/>
+        <Property name="text" type="java.lang.String" value="AAA000"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LicenseNumberActionPerformed"/>

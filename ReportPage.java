@@ -44,7 +44,7 @@ public class ReportPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        LicenseNumber.setText("ABC123");
+        LicenseNumber.setText("AAA000");
         LicenseNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LicenseNumberActionPerformed(evt);
