@@ -271,7 +271,7 @@ public class StudentStaffPage extends javax.swing.JFrame {
         updateUser();
         ReportPage report = new ReportPage();
         report.setVisible(true);
-        setVisible(false);        
+        //setVisible(false);        
     }//GEN-LAST:event_btnReportActionPerformed
 
     private void btnFeesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFeesActionPerformed
