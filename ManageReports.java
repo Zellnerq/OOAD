@@ -31,13 +31,24 @@ public class ManageReports
        newList.setVisible(true);
     }
     
-    public static void approveReport(int reportNum, int amount)
+    public static void approveReport(int reportNum, double amount)
     {
        Vehicle v = reportList[reportNum].getVehicle();
        StudentStaff s = Main.findUser(v);
        if(s.getID() != 0)
        {
           s.updateBalance(-amount);
+       }
+    }
+    
+    public static void deleteReport(int reportNum)
+    {
+       if(numReports != 1)
+          reportList[reportNum] = reportList[--numReports];
+       else
+       {
+          reportList[reportNum] = null;
+          numReports--;
        }
     }
 }

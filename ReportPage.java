@@ -44,6 +44,7 @@ public class ReportPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        LicenseNumber.setText("ABC123");
         LicenseNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LicenseNumberActionPerformed(evt);
@@ -59,6 +60,7 @@ public class ReportPage extends javax.swing.JFrame {
             }
         });
 
+        CarMake.setText("Ford");
         CarMake.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CarMakeActionPerformed(evt);
@@ -69,9 +71,22 @@ public class ReportPage extends javax.swing.JFrame {
 
         jLabel3.setText("Vehicle Model:");
 
+        CarModel.setText("Model-T");
+        CarModel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CarModelActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Vehicle Color:");
 
+        CarColor.setText("Black");
+
         IsMoped.setText("Moped?");
+
+        lotNumber.setText("1");
+
+        ParkingSpaceNumber.setText("1");
 
         jLabel5.setText("Lot Number:");
 
@@ -157,11 +172,16 @@ public class ReportPage extends javax.swing.JFrame {
        int lotNum = Integer.parseInt(lotNumber.getText());
        int spaceNum = Integer.parseInt(ParkingSpaceNumber.getText());
        ManageReports.addReport(offending, lotNum, spaceNum);    
+       setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void CarMakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarMakeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CarMakeActionPerformed
+
+    private void CarModelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarModelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CarModelActionPerformed
 
     /**
      * @param args the command line arguments

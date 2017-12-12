@@ -52,7 +52,7 @@ public class StudentStaff extends User{
         }        
         return found;     
     }
-    public void updateBalance( int newBalance ){
+    public void updateBalance( double newBalance ){
         balance += newBalance;
     }
     public double getBalance (){

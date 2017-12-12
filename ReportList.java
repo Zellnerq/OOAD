@@ -15,29 +15,31 @@ public class ReportList extends javax.swing.JFrame {
      * Creates new form ReportList
      */
     public ReportList() {
+        initComponents();
         String[] columns = new String[]{ "Lot", "Space", "License Plate", 
                                          "Time"};
         
-        Object data[][] = new Object[4][ManageReports.numReports];
+       // Object data[][] = new Object[4][ManageReports.numReports];
+        Object data[][] = new Object[ManageReports.numReports][4];
         
         for(int i = 0; i < ManageReports.numReports; i++)
         {
-           data[0][i] = ManageReports.reportList[i].getLot();
+           data[i][0] = ManageReports.reportList[i].getLot();
         }
         for(int i = 0; i < ManageReports.numReports; i++)
         {
-           data[1][i] = ManageReports.reportList[i].getSpace();
+           data[i][1] = ManageReports.reportList[i].getSpace();
         }
         for(int i = 0; i < ManageReports.numReports; i++)
         {
-           data[2][i] = ManageReports.reportList[i].getLicense();
+           data[i][2] = ManageReports.reportList[i].getLicense();
         }
         for(int i = 0; i < ManageReports.numReports; i++)
         {
-           data[3][i] = ManageReports.reportList[i].getTime();
+           data[i][3] = ManageReports.reportList[i].getTime();
         }
-        initComponents();
-        jTable1 = new javax.swing.JTable(data, columns);
+    //    jTable1 = new javax.swing.JTable(data, columns);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(data, columns));
     }
 
     /**
@@ -84,6 +86,11 @@ public class ReportList extends javax.swing.JFrame {
         });
 
         DeleteButton.setText("Delete");
+        DeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteButtonActionPerformed(evt);
+            }
+        });
 
         feeAmount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,18 +149,28 @@ public class ReportList extends javax.swing.JFrame {
     private void ApproveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ApproveButtonActionPerformed
         // TODO add your handling code here:
         String amount = feeAmount.getText();
-        int intAmount = 0;
+        double intAmount = 0;
         if(!amount.equals(""))
-           intAmount = Integer.parseInt(amount);
+           intAmount = Double.parseDouble(amount);
         if(selectedRow >= 0 && intAmount != 0)
         {
            ManageReports.approveReport(selectedRow, intAmount);
         }
+        setVisible(false);
     }//GEN-LAST:event_ApproveButtonActionPerformed
 
     private void feeAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feeAmountActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_feeAmountActionPerformed
+
+    private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
+        // TODO add your handling code here:
+        if(selectedRow >= 0)
+        {
+           ManageReports.deleteReport(selectedRow);
+        }
+        setVisible(false);
+    }//GEN-LAST:event_DeleteButtonActionPerformed
 
     /**
      * @param args the command line arguments
